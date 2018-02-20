@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <style>.main,body,html{height:100%;padding:0;margin:0}.buttons,.image{text-align:center}body,html{font-weight:700;background:#fff;font-family:"Helvetica neue"}.main{display:flex;align-items:center;justify-content:center}.inner{padding-top:30px}.image img{border:7px solid #000}.buttons{margin:15px 0 0;color:#000;font-size:25px;background:#fff}.buttons a{margin:0;padding:15px;cursor:pointer;display:inline-block;border:4px solid transparent;transition:all .3s linear}.buttons a:hover{background:#000;color:#fff}.image img{transition:.3s linear all}.image{min-width:400px;min-height:400px}@keyframes spinner{to{transform:rotate(360deg)}}.spinner:after{content:'';box-sizing:border-box;position:absolute;top:50%;left:50%;width:50px;height:50px;margin-top:-25px;margin-left:-25px;border-radius:50%;border:8px solid transparent;border-top-color:#000;border-bottom-color:#000;animation:spinner .8s ease infinite}.image.spinner img{border:7px solid transparent}</style>
+</head>
+<body>
+    <div class="main">
+        <div class="inner">
+            <div class="image spinner"><img id="img" alt="cat" src="/image"/></div>
+            <div class="buttons">{% for category in categories %}<a data-value="{{category}}">{{category}}</a>{% endfor %}</div>
+        </div>
+    </div>
+    <script>let index=0;const container=document.querySelector('.image');const element=document.getElementById('img');const buttons=[...document.querySelectorAll('.buttons a')];element.addEventListener('load',()=>{container.classList.remove('spinner');element.style.opacity=1});for(const button of buttons){button.addEventListener('click',(e)=>{const value=e.target.getAttribute('data-value');const token=Math.random().toString(36).substring(7);const src=`/image?flush=${token}&tag=${value}&prev=${index}`;index++;element.style.opacity=0;container.classList.add('spinner');element.setAttribute('src',src)})}</script>
+</body>
+</html>
