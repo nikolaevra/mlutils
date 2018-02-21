@@ -8,7 +8,7 @@ def readme():
 
 setup(name='mlutils',
       version='0.0.2',
-      description='UI for manual image classification',
+      description='Collection of machine learning utility functions',
       long_description="",
       url='http://github.com/nikolaevra/mlutils',
       author='Ruslan Nikolaev',
