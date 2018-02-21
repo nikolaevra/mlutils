@@ -1,8 +1,3 @@
-import os, sys
-from os import listdir
-from os.path import isfile, join
-
-
 def format_file_names(rel_path='', name_style="img_{}"):
     """
       Rename all files in the folder under rel_path.
@@ -10,6 +5,10 @@ def format_file_names(rel_path='', name_style="img_{}"):
       rel_path -- relative path to the folder (default 0.0)
       name_style -- file naming convention with incrementing integer (default "img_{}")
     """
+    import os
+    from os import listdir
+    from os.path import isfile, join
+
     dir_path = os.path.abspath(os.getcwd())
     full_path = os.path.join(dir_path, rel_path)
 
@@ -25,3 +24,12 @@ def format_file_names(rel_path='', name_style="img_{}"):
             i = i + 1
         else:
             print('Could not rename matching names {} and {}'.format(infile, outfile))
+
+
+def get_methods(obj):
+    """
+      Get all methods of a class
+    """
+    import inspect
+
+    return inspect.getmembers(obj, predicate=inspect.ismethod)
